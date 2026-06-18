@@ -1,11 +1,11 @@
 [package]
 name = "anthroxy"
-version = "0.1.0"
+version = "0.2.1"
 edition = "2021"
-description = "Transparent rate-limiting + retry reverse proxy in front of api.anthropic.com (subscription-OAuth passthrough; bodies forwarded opaque)."
+description = "Transparent retry reverse proxy in front of api.anthropic.com — survives 429/5xx so agents don't halt (subscription-OAuth passthrough; bodies forwarded opaque)."
 
 [dependencies]
-tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time", "sync"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time"] }
 hyper = { version = "1", features = ["server", "http1", "http2"] }
 hyper-util = { version = "0.1", features = ["tokio", "server-auto"] }
 http-body-util = "0.1"

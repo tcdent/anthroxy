@@ -27,9 +27,9 @@ job "anthroxy" {
       }
 
       env {
-        # Bind ONLY the "default" host_network IP (elsenor's main IP), never 0.0.0.0 — anthroxy's
-        # configurable bind does what plane-api's gunicorn TODO wanted but couldn't easily.
-        ANTHROXY_BIND = "${NOMAD_IP_http}"
+        # Loopback-only: Caddy (network_mode=host, same netns) is anthroxy's sole ingress at
+        # https://anthroxy.a10k.co. Nothing reaches the proxy directly — no wildcard, no host IP.
+        ANTHROXY_BIND = "127.0.0.1"
         ANTHROXY_PORT = "${NOMAD_PORT_http}"
 
         # Throttle knobs — start conservative (~the 3-concurrent acceleration ceiling we

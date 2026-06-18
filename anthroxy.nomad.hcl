@@ -13,7 +13,7 @@ job "anthroxy" {
 
       port "http" {
         static       = 8787
-        host_network = "service"
+        host_network = "default"
       }
     }
 
@@ -27,7 +27,7 @@ job "anthroxy" {
       }
 
       env {
-        # Bind ONLY the "service" host_network IP (192.168.88.3), never 0.0.0.0 — anthroxy's
+        # Bind ONLY the "default" host_network IP (elsenor's main IP), never 0.0.0.0 — anthroxy's
         # configurable bind does what plane-api's gunicorn TODO wanted but couldn't easily.
         ANTHROXY_BIND = "${NOMAD_IP_http}"
         ANTHROXY_PORT = "${NOMAD_PORT_http}"
